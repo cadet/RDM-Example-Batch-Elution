@@ -6,9 +6,10 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.5
+    jupytext_version: 1.16.6
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
+  language: python
   name: python3
 ---
 
@@ -88,19 +89,73 @@ optimization_problem.add_objective(
 
 ```{code-cell}
 from CADETProcess.optimization import U_NSGA3
-optimizer = U_NSGA3()
+optimizer= U_NSGA3()
+optimizer.n_max_gen = 5
+optimizer.pop_size = 6 
+optimizer.n_cores = 6
 ```
 
 ## Run Optimization
 
-```{note}
-For performance reasons, the optimization is currently not run when building the documentation.
-In future, we will try to sideload pre-computed results to also discuss them here.
+```{code-cell}
+optimization_results = optimizer.optimize(
+    optimization_problem,
+    use_checkpoint=False )
 ```
 
+### Optimization Progress and Results
+
+The `OptimizationResults` which are returned contain information about the progress of the optimization.
+For example, the attributes `x` and `f` contain the final value(s) of parameters and the objective function.
+
+```{code-cell}
+---
+editable: true
+slideshow:
+  slide_type: ''
+tags: [solution]
+---
+print(optimization_results.x)
+print(optimization_results.f)
 ```
-results = optimizer.optimize(
-    optimization_problem,
-    use_checkpoint=True,
-)
+
++++ {"editable": true, "slideshow": {"slide_type": "slide"}}
+
+After optimization, several figures can be plotted to vizualize the results.
+For example, the convergence plot shows how the function value changes with the number of evaluations.
+
+```{code-cell}
+---
+editable: true
+slideshow:
+  slide_type: ''
+tags: [solution]
+---
+optimization_results.plot_convergence()
 ```
+
++++ {"editable": true, "slideshow": {"slide_type": "slide"}}
+
+The `plot_objectives` method shows the objective function values of all evaluated individuals.
+Here, lighter color represent later evaluations.
+Note that by default the values are plotted on a log scale if they span many orders of magnitude.
+To disable this, set `autoscale=False`.
+
+```{code-cell}
+---
+editable: true
+slideshow:
+  slide_type: ''
+tags: [solution]
+---
+optimization_results.plot_objectives()
+```
+
++++ {"editable": true, "slideshow": {"slide_type": "slide"}}
+
+Note that more figures are created for constrained optimization, as well as multi-objective optimization.
+All figures are also saved automatically in the `working_directory`.
+Moreover, results are stored in a `.csv` file.
+- The `results_all.csv` file contains information about all evaluated individuals.
+- The `results_last.csv` file contains information about the last generation of evaluated individuals.
+- The `results_pareto.csv` file contains only the best individual(s).
