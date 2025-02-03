@@ -95,7 +95,7 @@ optimization_problem.add_objective(
 # %%
 from CADETProcess.optimization import U_NSGA3
 optimizer= U_NSGA3()
-optimizer.n_max_gen = 2
+optimizer.n_max_gen = 3
 optimizer.pop_size = 3
 optimizer.n_cores = 3
 
@@ -124,7 +124,6 @@ print(optimization_results.f)
 # %% editable=true slideshow={"slide_type": ""} tags=["solution"]
 optimization_results.plot_convergence()
 
-
 # %% [markdown] editable=true slideshow={"slide_type": "slide"}
 # The `plot_objectives` method shows the objective function values of all evaluated individuals.
 # Here, lighter color represent later evaluations.
@@ -141,9 +140,3 @@ optimization_results.plot_objectives()
 # - The `results_all.csv` file contains information about all evaluated individuals.
 # - The `results_last.csv` file contains information about the last generation of evaluated individuals.
 # - The `results_pareto.csv` file contains only the best individual(s).
-
-# %%
-
-# %%
-
-# %%

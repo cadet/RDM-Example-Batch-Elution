@@ -94,7 +94,7 @@ optimization_problem.add_objective(
 ```{code-cell} ipython3
 from CADETProcess.optimization import U_NSGA3
 optimizer= U_NSGA3()
-optimizer.n_max_gen = 2
+optimizer.n_max_gen = 3
 optimizer.pop_size = 3
 optimizer.n_cores = 3
 ```
@@ -163,15 +163,3 @@ Moreover, results are stored in a `.csv` file.
 - The `results_all.csv` file contains information about all evaluated individuals.
 - The `results_last.csv` file contains information about the last generation of evaluated individuals.
 - The `results_pareto.csv` file contains only the best individual(s).
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
