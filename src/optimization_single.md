@@ -13,12 +13,16 @@ kernelspec:
   name: python3
 ---
 
+```{code-cell} ipython3
+%matplotlib inline
+```
+
 (batch_elution_optimization_single)=
 # Optimize Batch Elution Process (Single Objective)
 
 ## Setup Optimization Problem
 
-```{code-cell}
+```{code-cell} ipython3
 from CADETProcess.optimization import OptimizationProblem
 optimization_problem = OptimizationProblem('batch_elution_single')
 
@@ -35,7 +39,7 @@ optimization_problem.add_linear_constraint(
 
 ## Setup Simulator
 
-```{code-cell}
+```{code-cell} ipython3
 from CADETProcess.simulator import Cadet
 process_simulator = Cadet()
 process_simulator.evaluate_stationarity = True
@@ -45,7 +49,7 @@ optimization_problem.add_evaluator(process_simulator)
 
 ## Setup Fractionator
 
-```{code-cell}
+```{code-cell} ipython3
 from CADETProcess.fractionation import FractionationOptimizer
 frac_opt = FractionationOptimizer()
 
@@ -61,7 +65,7 @@ optimization_problem.add_evaluator(
 
 ## Add callback for post-processing
 
-```{code-cell}
+```{code-cell} ipython3
 def callback(fractionation, individual, evaluation_object, callbacks_dir):
     fractionation.plot_fraction_signal(
         file_name=f'{callbacks_dir}/{individual.id}_{evaluation_object}_fractionation.png',
@@ -75,7 +79,7 @@ optimization_problem.add_callback(
 
 ## Setup Objectives
 
-```{code-cell}
+```{code-cell} ipython3
 from CADETProcess.performance import PerformanceProduct
 ranking = [1, 1]
 performance = PerformanceProduct(ranking=ranking)
@@ -87,17 +91,17 @@ optimization_problem.add_objective(
 
 ## Configure Optimizer
 
-```{code-cell}
+```{code-cell} ipython3
 from CADETProcess.optimization import U_NSGA3
 optimizer= U_NSGA3()
-optimizer.n_max_gen = 5
-optimizer.pop_size = 6 
-optimizer.n_cores = 6
+optimizer.n_max_gen = 2
+optimizer.pop_size = 3
+optimizer.n_cores = 3
 ```
 
 ## Run Optimization
 
-```{code-cell}
+```{code-cell} ipython3
 optimization_results = optimizer.optimize(
     optimization_problem,
     use_checkpoint=False )
@@ -108,7 +112,7 @@ optimization_results = optimizer.optimize(
 The `OptimizationResults` which are returned contain information about the progress of the optimization.
 For example, the attributes `x` and `f` contain the final value(s) of parameters and the objective function.
 
-```{code-cell}
+```{code-cell} ipython3
 ---
 editable: true
 slideshow:
@@ -124,7 +128,7 @@ print(optimization_results.f)
 After optimization, several figures can be plotted to vizualize the results.
 For example, the convergence plot shows how the function value changes with the number of evaluations.
 
-```{code-cell}
+```{code-cell} ipython3
 ---
 editable: true
 slideshow:
@@ -141,7 +145,7 @@ Here, lighter color represent later evaluations.
 Note that by default the values are plotted on a log scale if they span many orders of magnitude.
 To disable this, set `autoscale=False`.
 
-```{code-cell}
+```{code-cell} ipython3
 ---
 editable: true
 slideshow:
@@ -159,3 +163,15 @@ Moreover, results are stored in a `.csv` file.
 - The `results_all.csv` file contains information about all evaluated individuals.
 - The `results_last.csv` file contains information about the last generation of evaluated individuals.
 - The `results_pareto.csv` file contains only the best individual(s).
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```

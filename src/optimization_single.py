@@ -13,6 +13,9 @@
 #     name: python3
 # ---
 
+# %%
+# %matplotlib inline
+
 # %% [markdown]
 # (batch_elution_optimization_single)=
 # # Optimize Batch Elution Process (Single Objective)
@@ -92,9 +95,9 @@ optimization_problem.add_objective(
 # %%
 from CADETProcess.optimization import U_NSGA3
 optimizer= U_NSGA3()
-optimizer.n_max_gen = 5
-optimizer.pop_size = 6 
-optimizer.n_cores = 6
+optimizer.n_max_gen = 2
+optimizer.pop_size = 3
+optimizer.n_cores = 3
 
 # %% [markdown]
 # ## Run Optimization
@@ -114,13 +117,13 @@ optimization_results = optimizer.optimize(
 print(optimization_results.x)
 print(optimization_results.f)
 
-
 # %% [markdown] editable=true slideshow={"slide_type": "slide"}
 # After optimization, several figures can be plotted to vizualize the results.
 # For example, the convergence plot shows how the function value changes with the number of evaluations.
 
 # %% editable=true slideshow={"slide_type": ""} tags=["solution"]
 optimization_results.plot_convergence()
+
 
 # %% [markdown] editable=true slideshow={"slide_type": "slide"}
 # The `plot_objectives` method shows the objective function values of all evaluated individuals.
@@ -138,3 +141,9 @@ optimization_results.plot_objectives()
 # - The `results_all.csv` file contains information about all evaluated individuals.
 # - The `results_last.csv` file contains information about the last generation of evaluated individuals.
 # - The `results_pareto.csv` file contains only the best individual(s).
+
+# %%
+
+# %%
+
+# %%
