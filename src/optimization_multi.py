@@ -154,9 +154,11 @@ optimization_results.plot_convergence()
 optimization_results.plot_objectives()
 
 # %% [markdown] editable=true slideshow={"slide_type": "slide"}
-# Note that more figures are created for constrained optimization, as well as multi-objective optimization.
+# Note that more figures are created for constrained optimization, as well as single-objective optimization.
 # All figures are also saved automatically in the `working_directory`.
 # Moreover, results are stored in a `.csv` file.
 # - The `results_all.csv` file contains information about all evaluated individuals.
 # - The `results_last.csv` file contains information about the last generation of evaluated individuals.
 # - The `results_pareto.csv` file contains only the best individual(s).
+
+# %%
