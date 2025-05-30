@@ -1,4 +1,4 @@
-# Project repo
+# Batch Elution Simulation with CADET
 
 This repository contains example simulations of a **Batch Elution** process using **CADET-Process** and **CADET-RDM**. A two-component system with a **Langmuir isotherm** binding model and a **LumpedRateModelWithoutPores** unit operation model is simulated. Following this, the operating conditions are **optimized** to maximize process performance. This can be achieved by combining multiple parameters into a single objective (`optimization_single.py`) or by setting up a multi-objective problem (`optimization_multi.py`).
 
