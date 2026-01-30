@@ -5,7 +5,7 @@
   "output_uuid": "2470ffc0-ea78-4d91-b07e-190646a4c44e",
   "cadet_rdm_version": "0.0.42",
   "output_remotes": {
-    "output_folder_name": "output",
+    "output_directory_name": "output",
     "output_remotes": {
       "origin": "git@github.com:cadet/RDM-Example-Batch-Elution-Output.git"
     }
